@@ -1,0 +1,13 @@
+#!/bin/sh
+#
+# Requires xmonad >= 0.13
+
+PROJECT_PATH="$HOME/git/my-xmonad"
+XMONAD_PATH="$HOME/.xmonad"
+
+set -e
+
+stack --stack-yaml "$PROJECT_PATH/stack.yaml" \
+    install :my-xmonad
+
+ln -f -T "$(stack --stack-yaml $PROJECT_PATH/stack.yaml exec -- which my-xmonad)" "$1"

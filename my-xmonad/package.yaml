@@ -10,8 +10,11 @@ category:            CLI
 
 dependencies:
   - base >= 4.7 && < 5
+  - xmonad
+  - xmonad-contrib
+  - X11
 
 executables:
   my-xmonad:
     source-dirs:      src
-    main:             Main.hs
+    main:             xmonad.hs
