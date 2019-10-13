@@ -1,0 +1,17 @@
+name:                my-xmonad
+version:             0.1.0
+synopsis: My XMonad configuration
+github: dogonthehorizon/my-xmonad
+license:             MIT
+author:              Fernando Freire
+maintainer:          Fernando Freire <dogonthehorizon@gmail.com>
+copyright:           2019 Fernando Freire
+category:            CLI
+
+dependencies:
+  - base >= 4.7 && < 5
+
+executables:
+  my-xmonad:
+    source-dirs:      src
+    main:             Main.hs
