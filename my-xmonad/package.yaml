@@ -14,7 +14,12 @@ dependencies:
   - xmonad-contrib
   - X11
 
+library:
+  source-dirs: src
+
 executables:
   my-xmonad:
-    source-dirs:      src
+    source-dirs:      app
     main:             xmonad.hs
+    dependencies:
+      - my-xmonad
