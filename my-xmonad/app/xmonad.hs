@@ -9,7 +9,7 @@ import           Graphics.X11.ExtraTypes.XF86     (xF86XK_AudioLowerVolume,
                                                    xF86XK_MonBrightnessUp,
                                                    xF86XK_Search)
 import           System.IO                        (Handle, hPutStrLn)
-import           XMonad                           (Full (..), Layout (..),
+import           XMonad                           (Layout (..),
                                                    WorkspaceId, X, XConfig (..),
                                                    className, controlMask, def,
                                                    gets, mod4Mask, sendMessage,
@@ -17,7 +17,7 @@ import           XMonad                           (Full (..), Layout (..),
                                                    xK_Print, xK_h, xK_l, xK_n,
                                                    xK_p, xK_q, xK_z, xmonad,
                                                    (-->), (.|.), (<&&>), (<+>),
-                                                   (=?), (|||))
+                                                   (=?))
 import           XMonad.Actions.CycleWS           (nextWS, prevWS, shiftToNext,
                                                    shiftToPrev)
 import           XMonad.Actions.DynamicWorkspaces (appendWorkspace)
@@ -28,17 +28,13 @@ import           XMonad.Hooks.EwmhDesktops        (ewmh)
 import           XMonad.Hooks.ManageDocks         (avoidStruts, docks,
                                                    manageDocks)
 import           XMonad.Hooks.ManageHelpers       (doRectFloat)
-import           XMonad.Layout.Fullscreen         (fullscreenFull)
-import           XMonad.Layout.Gaps               (Direction2D (..), gaps)
-import           XMonad.Layout.NoBorders          (noBorders)
-import           XMonad.Layout.ResizableTile      (ResizableTall (..))
-import           XMonad.Layout.ThreeColumns       (ThreeCol (..))
-import           XMonad.Layout.WindowArranger     (windowArrange)
 import           XMonad.StackSet                  (RationalRect (..))
 import qualified XMonad.StackSet                  as W
 import           XMonad.Util.EZConfig             (additionalKeys)
 import           XMonad.Util.Run                  (spawnPipe)
 import           XMonad.Util.SpawnOnce            (spawnOnce)
+
+import MyXMonad.Layout
 
 
 -- colors
@@ -137,15 +133,6 @@ logbar h = dynamicLogWithPP $ def
         )
   }
 
-resize = ResizableTall 1 (2 / 100) (1 / 2) []
-full = noBorders (fullscreenFull Full)
-threeCol =
-  ThreeCol 1       -- num windows to show initially
-             (3 / 100) -- amount to resize while resizing
-                       (1 / 3)   -- initial size of columns
-withGaps l = gaps [(U, 48), (R, 0), (L, 0), (D, 0)] (avoidStruts l)
-layout = (withGaps resize) ||| full ||| (withGaps threeCol)
-
 -- | Generate workspace labels up to the given bound.
 numWorkspaces :: Int -> [String]
 numWorkspaces upperBound = pad . show <$> [1 .. upperBound]
@@ -175,7 +162,7 @@ main = do
     .                ewmh
     $                docks def
                        { manageHook         = manageDocks <+> manageHook def
-                       , layoutHook         = windowArrange layout
+                       , layoutHook         = layout
                        , startupHook        = myStartupHook
                        , workspaces         = numWorkspaces 3
                        , terminal           = "kitty"
