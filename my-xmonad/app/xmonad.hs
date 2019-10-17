@@ -45,8 +45,9 @@ logbar h = dynamicLogWithPP $ def
   , ppHidden          = dzenColor foreground background
   , ppHiddenNoWindows = dzenColor foreground background
   , ppUrgent          = dzenColor foreground focusedBorder
-  , ppOrder           = \(ws : l : _) -> [ws, l]
-  , ppSep             = ""
+  , ppOrder           = \(workspaces : layout : _) -> [workspaces, layout]
+  , ppSep             = " "
+  , ppWsSep           = ""
   , ppLayout          =
     dzenColor foreground winType
       . (\mode -> if "Tall" `isInfixOf` mode
@@ -66,18 +67,18 @@ myStartupHook =
   spawnHere ("feh --randomize --recursive --bg-fill " <> backgroundImage)
     >> spawnOnce "compton"
     >> spawnHere
-         ("i3status | dzen2 -ta r -x 400 -h 48 -w 3440 -fn " ++ statusFont)
+         ("i3status | dzen2 -ta r -x 480 -h 48 -w 3360 -fn " ++ statusFont)
 
 main :: IO ()
 main = do
-  bar <- spawnPipe ("dzen2 -ta l -p -w 400 -h 48 -fn " ++ statusFont)
+  bar <- spawnPipe ("dzen2 -ta l -p -w 480 -h 48 -fn " ++ statusFont)
   xmonad
     .                ewmh
     $                docks def
                        { manageHook         = manageDocks <+> manageHook def
                        , layoutHook         = layout
                        , startupHook        = myStartupHook
-                       , workspaces         = numWorkspaces 3
+                       , workspaces         = numWorkspaces 5
                        , terminal           = "kitty"
                        , borderWidth        = fromIntegral borderWidthPx
                        , focusedBorderColor = focusedBorder
