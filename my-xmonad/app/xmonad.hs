@@ -20,6 +20,7 @@ import           XMonad.StackSet                  (RationalRect (..))
 import           XMonad.Util.EZConfig             (additionalKeys)
 import           XMonad.Util.Run                  (spawnPipe)
 import           XMonad.Util.SpawnOnce            (spawnOnce)
+import XMonad.Util.NamedScratchpad (namedScratchpadFilterOutWorkspacePP)
 
 import MyXMonad.Layout
 import MyXMonad.KeyMapping
@@ -39,7 +40,7 @@ statusFont = "'Ubuntu Mono derivative Powerline:size=14'"
 
 borderWidthPx = 3 :: Int
 
-logbar h = dynamicLogWithPP $ def
+logbar h = dynamicLogWithPP . namedScratchpadFilterOutWorkspacePP $ def
   { ppOutput          = hPutStrLn h
   , ppCurrent         = dzenColor foreground normalBorder
   , ppVisible         = dzenColor foreground background
