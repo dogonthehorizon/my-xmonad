@@ -22,6 +22,8 @@ import           Graphics.X11.ExtraTypes.XF86     (xF86XK_AudioLowerVolume,
 import           XMonad.Hooks.DynamicLog          (pad)
 import qualified XMonad.StackSet                  as W
 
+import MyXMonad.Scratchpad
+
 
 -- keys
 mKeys =
@@ -43,7 +45,7 @@ mKeys =
   , ((modm, xK_Print)             , spawnHere $ scrot "-u")
   , ((0, xF86XK_MonBrightnessUp)  , spawnHere $ xbacklight Brighten)
   , ((0, xF86XK_MonBrightnessDown), spawnHere $ xbacklight Darken)
-  ]
+  ] ++ namedActions
  where
   modm = mod4Mask
   scrot opts =
@@ -56,6 +58,9 @@ mKeys =
           \/org/freedesktop/login1 \
           \ \"org.freedesktop.login1.Manager.PowerOff\" \
           \ boolean:true"
+  namedActions =
+    fmap (\(k, c) -> ((modm .|. controlMask, k), c))
+         scratchpadUnprefixedKeyMap
 
 data BacklightControl = Darken | Brighten
 

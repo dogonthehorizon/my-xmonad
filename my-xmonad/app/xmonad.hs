@@ -23,6 +23,7 @@ import           XMonad.Util.SpawnOnce            (spawnOnce)
 
 import MyXMonad.Layout
 import MyXMonad.KeyMapping
+import MyXMonad.Scratchpad
 
 
 -- colors
@@ -75,7 +76,7 @@ main = do
   xmonad
     .                ewmh
     $                docks def
-                       { manageHook         = manageDocks <+> manageHook def
+                       { manageHook         = scratchpadHook <+> manageDocks <+> manageHook def
                        , layoutHook         = layout
                        , startupHook        = myStartupHook
                        , workspaces         = numWorkspaces 5
