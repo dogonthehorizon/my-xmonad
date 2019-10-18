@@ -28,12 +28,11 @@ instance Show Scratchpad where
 instance ToScratchpad Scratchpad where
   toScratchpad Terminal =
     (show Terminal, "kitty --name=scratchpad", resource =? "scratchpad", defaultFloatingHook)
-  -- TODO this window isn't floating
   toScratchpad Telegram =
     (show Telegram, "telegram-desktop", resource =? "telegram-desktop", defaultFloatingHook)
   -- TODO this window isn't floating
   toScratchpad Spotify =
-    (show Spotify, "spotify", resource =? "spotify", defaultFloatingHook)
+    (show Spotify, "spotify --force-device-scale-factor=2", resource =? "spotify", defaultFloatingHook)
 
 scratchpads = (\(n, c, f, h) -> NS n c f h) . toScratchpad <$>[Terminal, Telegram, Spotify]
 
