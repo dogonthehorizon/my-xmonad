@@ -8,6 +8,6 @@ scrotOpts Window = "-u"
 
 screencap :: Region -> String
 screencap region =
-  "scrot "
-    <> (scrotOpts region)
-    <> " -z '%Y-%m-%d-%H-%M-%s_screenshot.png' -e 'mv $f ~/Desktop/'"
+    "scrot "
+        <> scrotOpts region
+        <> " -z '%Y-%m-%d-%H-%M-%s_screenshot.png' -e 'mv $f ~/Desktop/'"
