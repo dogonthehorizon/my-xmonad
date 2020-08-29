@@ -1,11 +1,12 @@
 module MyXMonad.Scratchpad where
 
-import XMonad.Core (Query, ManageHook)
-import XMonad ((=?), resource, xK_t, xK_c, xK_s)
-import XMonad.Util.NamedScratchpad (customFloating, namedScratchpadAction,
-                                    namedScratchpadManageHook,
-                                    NamedScratchpad(NS))
-import qualified XMonad.StackSet as W
+import           XMonad                      (resource, xK_c, xK_s, xK_t, (=?))
+import           XMonad.Core                 (ManageHook, Query)
+import qualified XMonad.StackSet             as W
+import           XMonad.Util.NamedScratchpad (NamedScratchpad (NS),
+                                              customFloating,
+                                              namedScratchpadAction,
+                                              namedScratchpadManageHook)
 
 class ToScratchpad a where
   toScratchpad  :: a -> (String, String, Query Bool, ManageHook)
@@ -13,12 +14,12 @@ class ToScratchpad a where
 data Scratchpad = Terminal | Telegram | Spotify
   deriving Eq
 
-defaultFloatingHook =
-  customFloating $ W.RationalRect l t w h
-      where h = 0.9
-            w = 0.9
-            t = 0.95 -h
-            l = 0.95 -w
+defaultFloatingHook = customFloating $ W.RationalRect l t w h
+  where
+    h = 0.9
+    w = 0.9
+    t = 0.95 - h
+    l = 0.95 - w
 
 instance Show Scratchpad where
   show Terminal = "terminal"
@@ -34,12 +35,15 @@ instance ToScratchpad Scratchpad where
   toScratchpad Spotify =
     (show Spotify, "spotify --force-device-scale-factor=2", resource =? "spotify", defaultFloatingHook)
 
-scratchpads = (\(n, c, f, h) -> NS n c f h) . toScratchpad <$>[Terminal, Telegram, Spotify]
+scratchpads =
+    (\(n, c, f, h) -> NS n c f h)
+        .   toScratchpad
+        <$> [Terminal, Telegram, Spotify]
 
-scratchpadUnprefixedKeyMap = [
-    (xK_t, namedScratchpadAction scratchpads (show Terminal)),
-    (xK_c, namedScratchpadAction scratchpads (show Telegram)),
-    (xK_s, namedScratchpadAction scratchpads (show Spotify))
-  ]
+scratchpadUnprefixedKeyMap =
+    [ (xK_t, namedScratchpadAction scratchpads (show Terminal))
+    , (xK_c, namedScratchpadAction scratchpads (show Telegram))
+    , (xK_s, namedScratchpadAction scratchpads (show Spotify))
+    ]
 
 scratchpadHook = namedScratchpadManageHook scratchpads
