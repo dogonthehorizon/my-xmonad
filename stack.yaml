@@ -37,13 +37,30 @@ packages:
 - xmonad
 - xmonad-contrib
 - X11
+- xmobar
+
 # Dependency packages to be pulled from upstream that are not in the resolver
 # using the same syntax as the packages field.
 # (e.g., acme-missiles-0.3)
-# extra-deps: []
+extra-deps:
+  - netlink-1.1.1.0@sha256:d83424b5ba9921191449e4b1f53c7cba7f4375f2c55a9b737c77e982e1f40d00,3689
 
 # Override default flag values for local packages and extra-deps
 # flags: {}
+flags:
+  xmobar:
+    with_xft: true
+    with_utf8: true
+    with_inotify: true
+    with_nl80211: true
+    with_datezone: true
+    with_mpris: true
+    with_dbus: true
+    with_xpm: true
+    with_threaded: true
+    with_rtsopts: true
+    with_weather: true
+    #with_alsa: true
 
 # Extra package databases containing global packages
 # extra-package-dbs: []

@@ -8,3 +8,6 @@
 	path = X11
 	url = git@github.com:xmonad/X11.git
   ignore = dirty
+[submodule "xmobar"]
+	path = xmobar
+	url = git@github.com:jaor/xmobar.git
