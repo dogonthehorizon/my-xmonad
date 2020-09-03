@@ -7,7 +7,7 @@ import Control.Monad.IO.Class      (MonadIO)
 import Data.List                   (isInfixOf)
 import System.IO                   (Handle, hPutStrLn)
 import XMonad.Hooks.DynamicLog     (PP (..), dynamicLogWithPP, wrap,
-                                    xmobarColor, xmobarPP)
+                                    xmobarColor, xmobarPP, shorten)
 import XMonad.Util.NamedScratchpad (namedScratchpadFilterOutWorkspacePP)
 import XMonad.Util.Run             (spawnPipe)
 
@@ -26,9 +26,9 @@ render handle =
         , ppVisible         = xmobarColor background ""
         , ppHidden          = xmobarColor background "" . wrap "+" ""
         , ppHiddenNoWindows = xmobarColor background ""
+        , ppTitle = xmobarColor "#84a0c6" "" . shorten 30
         , ppUrgent          = xmobarColor focusedBorder "" . wrap "!" ""
         , ppOrder = \(workspaces : layout : t : _) -> [workspaces, layout, t]
-        , ppSep             = " "
         , ppWsSep           = ""
         , ppLayout          =
             xmobarColor winType ""
@@ -42,4 +42,4 @@ render handle =
         }
 
 spawn :: (MonadIO m) => m Handle
-spawn = spawnPipe "xmobar"
+spawn = spawnPipe "/home/ffreire/.local/bin/xmobar"
