@@ -17,18 +17,12 @@ import           XMonad.Util.NamedScratchpad (namedScratchpadFilterOutWorkspaceP
 import           XMonad.Util.Run             (spawnPipe)
 import           XMonad.Util.SpawnOnce       (spawnOnce)
 
+import           MyXMonad.Colors
 import           MyXMonad.KeyMapping
 import           MyXMonad.Layout
 import           MyXMonad.Scratchpad
 import qualified MyXMonad.XMobar             as XMobar
 
-
--- colors
-normalBorder = "#6986a0"
-focusedBorder = "#ffca28" -- amber
-foreground = "#DEE3E0"
-background = "#263238" -- for material
-winType = "#649A54" -- green
 
 backgroundImage = "$HOME/Documents/background/*"
 

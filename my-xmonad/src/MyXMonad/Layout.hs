@@ -21,7 +21,6 @@ layout = windowArrange (avoidStruts resize ||| full ||| avoidStruts threeCol)
 
     -- Three Column Layout
     threeCol =
-        renamed [Replace "3col"] $
-        ThreeCol 1         -- num windows to show initially
-                   (3 / 100) -- amount to resize while resizing
-                             (1 / 3)   -- initial size of columns
+        renamed [Replace "3col"] $ ThreeCol 1         -- num windows to show initially
+                                              (3 / 100) -- amount to resize while resizing
+                                                        (1 / 3)   -- initial size of columns
