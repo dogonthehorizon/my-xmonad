@@ -7,8 +7,7 @@ import           XMonad                      (Layout (..), X, XConfig (..),
 import           XMonad.Actions.CycleWS      (nextWS, prevWS, shiftToNext,
                                               shiftToPrev)
 import           XMonad.Actions.SpawnOn      (spawnHere)
-import           XMonad.Hooks.DynamicLog     (PP (..), dynamicLogWithPP,
-                                              dzenColor, pad)
+import           XMonad.Hooks.DynamicLog     (pad)
 import           XMonad.Hooks.EwmhDesktops   (ewmh)
 import           XMonad.Hooks.ManageDocks    (avoidStruts, docks, manageDocks)
 import           XMonad.Hooks.ManageHelpers  (doRectFloat)
@@ -37,41 +36,16 @@ statusFont = "'Ubuntu Mono derivative Powerline:size=14'"
 
 borderWidthPx = 3 :: Int
 
-logbar h = dynamicLogWithPP . namedScratchpadFilterOutWorkspacePP $ def
-    { ppOutput          = hPutStrLn h
-    , ppCurrent         = dzenColor foreground normalBorder
-    , ppVisible         = dzenColor foreground background
-    , ppHidden          = dzenColor foreground background
-    , ppHiddenNoWindows = dzenColor foreground background
-    , ppUrgent          = dzenColor foreground focusedBorder
-    , ppOrder           = \(workspaces : layout : _) -> [workspaces, layout]
-    , ppSep             = " "
-    , ppWsSep           = ""
-    , ppLayout          =
-        dzenColor foreground winType
-            . (\mode -> if "Tall" `isInfixOf` mode
-                  then " tall "
-                  else case mode of
-                      "Full"     -> " full "
-                      "ThreeCol" -> " 3col "
-                      _          -> " ? "
-              )
-    }
-
 -- | Generate workspace labels up to the given bound.
 numWorkspaces :: Int -> [String]
 numWorkspaces upperBound = pad . show <$> [1 .. upperBound]
 
 myStartupHook =
     spawnHere ("feh --randomize --recursive --bg-fill " <> backgroundImage)
-        >> spawnOnce "compton"
-        -- >> spawnHere
-               --("i3status | dzen2 -ta r -x 480 -h 48 -w 3360 -fn " ++ statusFont
-               --)
+        >> spawnOnce "picom"
 
 main :: IO ()
 main = do
-    --bar <- spawnPipe ("dzen2 -ta l -p -w 480 -h 48 -fn " ++ statusFont)
     handle <- XMobar.spawn
     xmonad . ewmh . flip additionalKeys mKeys $ docks def
         { manageHook         = scratchpadHook <+> manageDocks <+> manageHook def
