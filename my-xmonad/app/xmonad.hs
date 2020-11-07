@@ -36,7 +36,7 @@ numWorkspaces upperBound = pad . show <$> [1 .. upperBound]
 
 myStartupHook =
     spawnHere ("feh --randomize --recursive --bg-fill " <> backgroundImage)
-        >> spawnOnce "picom"
+        >> spawnOnce "picom --config ~/.config/picom/picom.config"
 
 main :: IO ()
 main = do
