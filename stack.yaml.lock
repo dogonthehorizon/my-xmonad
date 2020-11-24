@@ -11,6 +11,13 @@ packages:
       sha256: 42a57a2db0d8b44e04a04905ed56994b7293d2f244595bf3e65480c36d114ac3
   original:
     hackage: netlink-1.1.1.0@sha256:d83424b5ba9921191449e4b1f53c7cba7f4375f2c55a9b737c77e982e1f40d00,3689
+- completed:
+    hackage: timezone-olson-0.2.0@sha256:ac8d47ae62855370eb50213986aeb718fa7ad5dba3309269b3124347f46fdefa,2315
+    pantry-tree:
+      size: 634
+      sha256: 93154a07b7a331b9978703a339b6d2d045332b283c7e17e393a0e6abce76036c
+  original:
+    hackage: timezone-olson-0.2.0@sha256:ac8d47ae62855370eb50213986aeb718fa7ad5dba3309269b3124347f46fdefa,2315
 snapshots:
 - completed:
     size: 524789

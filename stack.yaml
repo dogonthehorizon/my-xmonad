@@ -45,6 +45,7 @@ packages:
 # (e.g., acme-missiles-0.3)
 extra-deps:
   - netlink-1.1.1.0@sha256:d83424b5ba9921191449e4b1f53c7cba7f4375f2c55a9b737c77e982e1f40d00,3689
+  - timezone-olson-0.2.0@sha256:ac8d47ae62855370eb50213986aeb718fa7ad5dba3309269b3124347f46fdefa,2315
 
 # Override default flag values for local packages and extra-deps
 # flags: {}
