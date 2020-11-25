@@ -27,4 +27,4 @@ render handle =
         }
 
 spawn :: (MonadIO m) => m Handle
-spawn = spawnPipe "/home/ffreire/.local/bin/xmobar"
+spawn = spawnPipe "/home/ffreire/.local/bin/my-xmobar"
