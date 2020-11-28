@@ -23,5 +23,10 @@ executables:
       - -threaded
       - -rtsopts
       - -with-rtsopts=-N
+      - +RTS
+      - --nonmoving-gc
+      - -RTS
+      - -O
+      - -optc-O3
     dependencies:
       - my-xmobar

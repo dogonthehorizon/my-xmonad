@@ -12,15 +12,15 @@ packages:
   original:
     hackage: netlink-1.1.1.0@sha256:d83424b5ba9921191449e4b1f53c7cba7f4375f2c55a9b737c77e982e1f40d00,3689
 - completed:
-    hackage: timezone-olson-0.2.0@sha256:ac8d47ae62855370eb50213986aeb718fa7ad5dba3309269b3124347f46fdefa,2315
+    hackage: lens-4.19.2@sha256:f0570ca0e4624d9daa57256f00f514e87be155401583fa1665faba47376c63a7,16053
     pantry-tree:
-      size: 634
-      sha256: 93154a07b7a331b9978703a339b6d2d045332b283c7e17e393a0e6abce76036c
+      size: 8330
+      sha256: 97df1b96d825fb74400e75847e2a6ce2c37c9d1baeb71f5804a3a97694a4f881
   original:
-    hackage: timezone-olson-0.2.0@sha256:ac8d47ae62855370eb50213986aeb718fa7ad5dba3309269b3124347f46fdefa,2315
+    hackage: lens-4.19.2
 snapshots:
 - completed:
-    size: 524789
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/14/8.yaml
-    sha256: 8af5eb80734f02621d37e82cc0cde614af2ddc9c320610acb0b1b6d9ac162930
-  original: lts-14.8
+    size: 532832
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/16/23.yaml
+    sha256: fbb2a0519008533924c7753bd7164ddd1009f09504eb06674acad6049b46db09
+  original: lts-16.23
