@@ -8,7 +8,7 @@
 clean:
 	@stack clean
 
-PATH_GLOB={app,src}
+PATH_GLOB={my-xmobar,my-palette,my-xmonad}/{src,app}
 FIND_CMD=fd
 
 # This should only need to be done once per developer machine.
@@ -17,14 +17,14 @@ setup: clean
 
 _HLINT=hlint {} \;
 hlint:
-	@fd -e hs . ${PATH_GLOB} -x $(_HLINT)
+	fd -e hs . ${PATH_GLOB} -x $(_HLINT)
 
 _STYLISH=stylish-haskell -i {} \;
 stylish-haskell:
-	@fd -e hs . ${PATH_GLOB} -x $(_STYLISH)
+	fd -e hs . ${PATH_GLOB} -x $(_STYLISH)
 
 _BRITTANY=brittany --write-mode=inplace {} \;
 brittany:
-	@fd -e hs . ${PATH_GLOB} -x $(_BRITTANY)
+	fd -e hs . ${PATH_GLOB} -x $(_BRITTANY)
 
 lint-all: stylish-haskell hlint brittany

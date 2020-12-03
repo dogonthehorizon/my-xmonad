@@ -16,19 +16,12 @@ dependencies:
 
 library:
   source-dirs: src
+  dependencies:
+    - my-palette
 
 executables:
   my-xmonad:
     source-dirs:      app
     main:             xmonad.hs
-    ghc-options:
-      - -threaded
-      - -rtsopts
-      - -with-rtsopts=-N
-      - +RTS
-      - --nonmoving-gc
-      - -RTS
-      - -O
-      - -optc-O3
     dependencies:
       - my-xmonad

@@ -1,16 +1,19 @@
 module Main where
 
-import Xmobar (Config (..), Date (..), Monitors (..), Runnable (Run),
-               StdinReader (..), XPosition (Top), defaultConfig, xmobar)
+import           Data.Color.Palette (Palette, defaultPalette)
+import qualified Data.Color.Palette as Palette
+import           Xmobar             (Config (..), Date (..), Monitors (..),
+                                     Runnable (Run), StdinReader (..),
+                                     XPosition (Top), defaultConfig, xmobar)
 
-config :: Config
-config = defaultConfig
+config :: Palette -> Config
+config palette = defaultConfig
     {
     -- Appearance
       font             =
         "xft:Ubuntu Mono derivative Powerline:size=14:antialias=true:hinting=true"
-    , bgColor          = "#263238"
-    , fgColor          = "#DEE3E0"
+    , bgColor          = Palette.backgroundColor palette
+    , fgColor          = Palette.foregroundColor palette
     , position         = Top
     , iconRoot         = "/home/ffreire/git/my-xmonad/icons"
 
@@ -38,7 +41,7 @@ config = defaultConfig
             , "-p"
             , "3"
             , "--low"
-            , "#dc322f"
+            , Palette.red palette
             , "--"
             , "-O"
             , "<icon=battery-mid-charging.xpm/>"
@@ -54,11 +57,11 @@ config = defaultConfig
             [ "--template"
             , "<icon=connected.xpm/> <essid> <quality>"
             , "--high"
-            , "#859900"
+            , Palette.green palette
             , "--normal"
-            , "#b58900"
+            , Palette.yellow palette
             , "--low"
-            , "#dc322f"
+            , Palette.red palette
             ]
             30
         , Run $ Date "<icon=calendar.xpm/> %R %a %Y-%m-%d " "date" 1
@@ -78,4 +81,4 @@ config = defaultConfig
     }
 
 main :: IO ()
-main = xmobar config
+main = xmobar (config defaultPalette)

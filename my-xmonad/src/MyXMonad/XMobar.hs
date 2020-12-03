@@ -4,7 +4,8 @@ module MyXMonad.XMobar (
 ) where
 
 import Control.Monad.IO.Class      (MonadIO)
-import MyXMonad.Colors             (focusedBorder, foreground, normalBorder, blueGray)
+import MyXMonad.Colors             (blueGray, focusedBorder, foreground,
+                                    normalBorder)
 import System.IO                   (Handle, hPutStrLn)
 import XMonad.Core                 (X)
 import XMonad.Hooks.DynamicLog     (PP (..), dynamicLogWithPP, shorten, wrap,

@@ -33,7 +33,7 @@ instance ToScratchpad Scratchpad where
     (show Telegram, "telegram-desktop", resource =? "telegram-desktop", defaultFloatingHook)
   -- TODO this window isn't floating
   toScratchpad Spotify =
-    (show Spotify, "spotify --force-device-scale-factor=2", resource =? "spotify", defaultFloatingHook)
+    (show Spotify, "spotify --force-device-scale-factor=2", resource =? "Spotify Premium", defaultFloatingHook)
 
 scratchpads =
     (\(n, c, f, h) -> NS n c f h)

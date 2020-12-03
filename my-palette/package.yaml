@@ -1,7 +1,7 @@
-name:                my-xmobar
+name:                my-palette
 version:             0.1.0
-synopsis: My XMobar configuration
-github: dogonthehorizon/my-xmonad
+synopsis:            My palette configuration
+github:              dogonthehorizon/my-xmonad
 license:             MIT
 author:              Fernando Freire
 maintainer:          Fernando Freire <dogonthehorizon@gmail.com>
@@ -10,15 +10,6 @@ category:            CLI
 
 dependencies:
   - base >= 4.7 && < 5
-  - xmobar
-  - my-palette
 
 library:
   source-dirs: src
-
-executables:
-  my-xmobar:
-    source-dirs:      app
-    main:             xmobar.hs
-    dependencies:
-      - my-xmobar

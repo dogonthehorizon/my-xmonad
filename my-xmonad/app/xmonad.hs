@@ -6,7 +6,6 @@ import           XMonad                      (Layout (..), X, XConfig (..),
                                               (.|.), (<&&>), (<+>), (=?))
 import           XMonad.Actions.CycleWS      (nextWS, prevWS, shiftToNext,
                                               shiftToPrev)
-import           XMonad.Actions.SpawnOn      (spawnHere)
 import           XMonad.Hooks.DynamicLog     (pad)
 import           XMonad.Hooks.EwmhDesktops   (ewmh)
 import           XMonad.Hooks.ManageDocks    (avoidStruts, docks, manageDocks)
@@ -15,9 +14,10 @@ import           XMonad.StackSet             (RationalRect (..))
 import           XMonad.Util.EZConfig        (additionalKeys)
 import           XMonad.Util.NamedScratchpad (namedScratchpadFilterOutWorkspacePP)
 import           XMonad.Util.Run             (spawnPipe)
-import           XMonad.Util.SpawnOnce       (spawnOnce)
 
 import           MyXMonad.Colors
+import qualified MyXMonad.Command.Background as Background
+import qualified MyXMonad.Command.Compositor as Compositor
 import           MyXMonad.KeyMapping
 import           MyXMonad.Layout
 import           MyXMonad.Scratchpad
@@ -34,17 +34,13 @@ borderWidthPx = 3 :: Int
 numWorkspaces :: Int -> [String]
 numWorkspaces upperBound = pad . show <$> [1 .. upperBound]
 
-myStartupHook =
-    spawnHere ("feh --randomize --recursive --bg-fill " <> backgroundImage)
-        >> spawnOnce "picom --config ~/.config/picom/picom.config"
-
 main :: IO ()
 main = do
     handle <- XMobar.spawn
     xmonad . ewmh . flip additionalKeys mKeys $ docks def
         { manageHook         = scratchpadHook <+> manageDocks <+> manageHook def
         , layoutHook         = layout
-        , startupHook        = myStartupHook
+        , startupHook        = Background.spawn >> Compositor.spawn
         , workspaces         = numWorkspaces 5
         , terminal           = "kitty"
         , borderWidth        = fromIntegral borderWidthPx

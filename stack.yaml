@@ -4,6 +4,7 @@ rebuild-ghc-options: true
 packages:
   - my-xmonad
   - my-xmobar
+  - my-palette
   - xmonad
   - xmonad-contrib
   - X11
@@ -26,3 +27,5 @@ flags:
     with_rtsopts: true
     with_weather: true
     with_alsa: true
+ghc-options:
+  "$locals": -threaded -rtsopts -with-rtsopts="-N +RTS --nonmoving-gc -RTS" -O -optc-O3
