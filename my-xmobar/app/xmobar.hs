@@ -21,7 +21,7 @@ config palette = defaultConfig
     , sepChar          = "%"
     , alignSep         = "}{"
     , template         =
-        "%UnsafeStdinReader% }{ %default:Master% | %wlp2s0wi% | %battery% | %date%"
+        "%UnsafeStdinReader% }{ %default:Master% | %wlp0s20f3wi% | %battery% | %date%"
     , lowerOnStart     = True
     , hideOnStart      = False
     , allDesktops      = True
@@ -53,7 +53,7 @@ config palette = defaultConfig
             50
         , Run UnsafeStdinReader
         , Run $ Wireless
-            "wlp2s0"
+            "wlp0s20f3"
             [ "--template"
             , "<icon=connected.xpm/> <essid> <quality>"
             , "--high"

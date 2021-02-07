@@ -13,6 +13,8 @@ extra-deps:
   - netlink-1.1.1.0@sha256:d83424b5ba9921191449e4b1f53c7cba7f4375f2c55a9b737c77e982e1f40d00,3689
   # Need to use >4.19 when building on GHC 8.10+
   - lens-4.19.2
+  # Needed for tests
+  - smallcheck-series-0.6.1.1
 flags:
   xmobar:
     with_xft: true
@@ -29,3 +31,7 @@ flags:
     with_alsa: true
 ghc-options:
   "$locals": -threaded -rtsopts -with-rtsopts="-N +RTS --nonmoving-gc -RTS" -O -optc-O3
+## Color
+# Solarized dark theme
+stack-colors: error=31:good=32:shell=35:dir=34:recommendation=32:target=95:module=35:package-component=95:secondary=92:highlight=32
+color: always
