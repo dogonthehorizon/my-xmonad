@@ -18,6 +18,13 @@ packages:
       sha256: 97df1b96d825fb74400e75847e2a6ce2c37c9d1baeb71f5804a3a97694a4f881
   original:
     hackage: lens-4.19.2
+- completed:
+    hackage: smallcheck-series-0.6.1.1@sha256:593b13877babc8788101f6677dc3653a9d7b3e16fb41509f33df9f758a243855,2144
+    pantry-tree:
+      size: 823
+      sha256: 3b94dc4ecfd80acdd4d6482510010f4e0812e04c100b1bec3078d59155e0cc0f
+  original:
+    hackage: smallcheck-series-0.6.1.1
 snapshots:
 - completed:
     size: 532832
