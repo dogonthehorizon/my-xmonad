@@ -48,7 +48,7 @@ mKeys =
         ++ namedActions
   where
     modm = mod4Mask
-    rofi = "fish -c 'rofi -show combi -modi comb'"
+    rofi = "fish -c 'rofi -show combi -modi combi'"
     shutdown
         = "dbus-send --system --print-reply --dest=org.freedesktop.login1 \
           \/org/freedesktop/login1 \
