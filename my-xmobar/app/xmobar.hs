@@ -4,24 +4,23 @@ import           Data.Color.Palette (Palette, defaultPalette)
 import qualified Data.Color.Palette as Palette
 import           Xmobar             (Config (..), Date (..), Monitors (..),
                                      Runnable (Run), StdinReader (..),
-                                     XPosition (Top), defaultConfig, xmobar)
+                                     XPosition (TopSize), defaultConfig, xmobar, Align(C))
 
 config :: Palette -> Config
 config palette = defaultConfig
     {
     -- Appearance
-      font             =
-        "xft:Ubuntu Mono derivative Powerline:size=14:antialias=true:hinting=true"
+      font             = "xft:Roboto Condensed:style=Bold:size=13:antialias=true:hinting=true"
     , bgColor          = Palette.backgroundColor palette
     , fgColor          = Palette.foregroundColor palette
-    , position         = Top
+    , position         = TopSize C 100 54
     , iconRoot         = "/home/ffreire/git/my-xmonad/icons"
 
     -- Layout
     , sepChar          = "%"
     , alignSep         = "}{"
     , template         =
-        "%UnsafeStdinReader% }{ %default:Master% | %wlp0s20f3wi% | %battery% | %date%"
+        "  %UnsafeStdinReader% }{ %default:Master% | %wlp0s20f3wi% | %battery% | %date%  "
     , lowerOnStart     = True
     , hideOnStart      = False
     , allDesktops      = True
@@ -81,4 +80,4 @@ config palette = defaultConfig
     }
 
 main :: IO ()
-main = xmobar (config defaultPalette)
+main = xmobar (config Palette.defaultPalette)
