@@ -1,5 +1,4 @@
-resolver: lts-16.23
-compiler: ghc-8.10.2  # Has option for conc mark/sweep GC
+resolver: lts-18.17
 rebuild-ghc-options: true
 packages:
   - my-xmonad
@@ -11,8 +10,6 @@ packages:
   - xmobar
 extra-deps:
   - netlink-1.1.1.0@sha256:d83424b5ba9921191449e4b1f53c7cba7f4375f2c55a9b737c77e982e1f40d00,3689
-  # Need to use >4.19 when building on GHC 8.10+
-  - lens-4.19.2
   # Needed for tests
   - smallcheck-series-0.6.1.1
 flags:
