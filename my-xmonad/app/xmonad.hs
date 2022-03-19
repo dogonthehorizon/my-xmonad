@@ -15,13 +15,13 @@ import           XMonad.Util.EZConfig        (additionalKeys)
 import           XMonad.Util.NamedScratchpad (namedScratchpadFilterOutWorkspacePP)
 import           XMonad.Util.Run             (spawnPipe)
 
-import           MyXMonad.Colors
 import qualified MyXMonad.Command.Background as Background
 import qualified MyXMonad.Command.Compositor as Compositor
 import           MyXMonad.KeyMapping
 import           MyXMonad.Layout
 import           MyXMonad.Scratchpad
 import qualified MyXMonad.XMobar             as XMobar
+import qualified Data.Color.Palette as Palette
 
 
 backgroundImage = "$HOME/Documents/background/*"
@@ -44,8 +44,14 @@ main = do
         , workspaces         = numWorkspaces 5
         , terminal           = "kitty"
         , borderWidth        = fromIntegral borderWidthPx
-        , focusedBorderColor = focusedBorder
-        , normalBorderColor  = normalBorder
-        , logHook            = XMobar.render handle
+        , focusedBorderColor = yellow
+        , normalBorderColor  = "#6986A0" -- TODO migrate
+        , logHook            = XMobar.render palette handle
         , modMask            = mod4Mask
         }
+          where palette@(Palette.Palette {
+                    Palette.foregroundColor = foregroundColor,
+                    Palette.backgroundColor = backgroundColor,
+                    Palette.yellow = yellow
+                  }) = Palette.defaultPalette
+

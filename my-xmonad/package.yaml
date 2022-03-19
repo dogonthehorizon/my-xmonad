@@ -13,11 +13,10 @@ dependencies:
   - xmonad
   - xmonad-contrib
   - X11
+  - my-palette
 
 library:
   source-dirs: src
-  dependencies:
-    - my-palette
 
 executables:
   my-xmonad:
