@@ -7,20 +7,20 @@ packages:
 - completed:
     hackage: netlink-1.1.1.0@sha256:d83424b5ba9921191449e4b1f53c7cba7f4375f2c55a9b737c77e982e1f40d00,3689
     pantry-tree:
-      size: 1598
       sha256: 42a57a2db0d8b44e04a04905ed56994b7293d2f244595bf3e65480c36d114ac3
+      size: 1598
   original:
     hackage: netlink-1.1.1.0@sha256:d83424b5ba9921191449e4b1f53c7cba7f4375f2c55a9b737c77e982e1f40d00,3689
 - completed:
     hackage: smallcheck-series-0.6.1.1@sha256:593b13877babc8788101f6677dc3653a9d7b3e16fb41509f33df9f758a243855,2144
     pantry-tree:
-      size: 823
       sha256: 3b94dc4ecfd80acdd4d6482510010f4e0812e04c100b1bec3078d59155e0cc0f
+      size: 823
   original:
     hackage: smallcheck-series-0.6.1.1
 snapshots:
 - completed:
-    size: 616897
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/19/0.yaml
-    sha256: bbf2be02f17940bac1f87cb462d4fb0c3355de6dcfc53d84f4f9ad3ee2164f65
-  original: lts-19.0
+    sha256: 6d1532d40621957a25bad5195bfca7938e8a06d923c91bc52aa0f3c41181f2d4
+    size: 619204
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/19/33.yaml
+  original: lts-19.33
