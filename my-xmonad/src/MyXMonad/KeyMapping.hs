@@ -11,10 +11,11 @@ import Graphics.X11.ExtraTypes.XF86
     xF86XK_MonBrightnessUp,
     xF86XK_Search,
   )
-import MyXMonad.Command.Backlight
-import MyXMonad.Command.Media
-import MyXMonad.Command.ScreenCapture
-import MyXMonad.Scratchpad
+import MyXMonad.Command.Backlight (BacklightControl (..), xbacklight)
+import MyXMonad.Command.Media (MediaControl (..), VolumeControl (..), pamixer, playerctl)
+import MyXMonad.Command.Notification (Notification (..), Severity (..), notification)
+import MyXMonad.Command.ScreenCapture (Region (..), screencap)
+import MyXMonad.Scratchpad (scratchpadUnprefixedKeyMap)
 import XMonad
   ( WorkspaceId,
     X,
@@ -70,8 +71,7 @@ mKeys =
   where
     modm = mod4Mask
     rofi = "fish -c 'rofi -show combi'"
-    notif = "notify-send --app-name=\"XMonad\" \"Compilation Complete\" \"Configuration is ready to reload.\""
-    recompile = "~/.xmonad/xmonad-x86_64-linux --recompile; " ++ notif
+    recompile = "~/.xmonad/xmonad-x86_64-linux --recompile; " ++ notification (Notification "Compilation Complete" "Config is ready to reload." (Just Normal))
     shutdown =
       "dbus-send --system --print-reply --dest=org.freedesktop.login1 \
       \/org/freedesktop/login1 \
