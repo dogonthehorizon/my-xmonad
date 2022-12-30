@@ -54,14 +54,13 @@ mKeys =
     ((modm .|. shiftMask, xK_l), shiftToNext >> nextWS),
     -- Restart xmonad
     ((modm, xK_q), restart "/home/ffreire/.xmonad/xmonad-x86_64-linux" True),
-    ((modm, xK_r), spawnHere recompile),
+    ((modm, xK_r), spawnHere "$HOME/bin/xmonad-recompile"),
     ((0, xF86XK_AudioMute), spawnHere $ pamixer Mute),
     ((0, xF86XK_AudioLowerVolume), spawnHere $ pamixer Decrease),
     ((0, xF86XK_AudioRaiseVolume), spawnHere $ pamixer Increase),
     ((0, xF86XK_AudioPlay), spawnHere $ playerctl Toggle),
     ((0, xF86XK_AudioNext), spawnHere $ playerctl Next),
     ((0, xF86XK_AudioPrev), spawnHere $ playerctl Previous),
-    ((0, xF86XK_Search), spawnHere rofi),
     ((0, xK_Print), spawnHere $ screencap Screen),
     ((modm, xK_Print), spawnHere $ screencap Window),
     ((0, xF86XK_MonBrightnessUp), spawnHere $ xbacklight Brighten),
@@ -71,7 +70,6 @@ mKeys =
   where
     modm = mod4Mask
     rofi = "fish -c 'rofi -show combi'"
-    recompile = "~/.xmonad/xmonad-x86_64-linux --recompile; " ++ notification (Notification "Compilation Complete" "Config is ready to reload." (Just Normal))
     shutdown =
       "dbus-send --system --print-reply --dest=org.freedesktop.login1 \
       \/org/freedesktop/login1 \
