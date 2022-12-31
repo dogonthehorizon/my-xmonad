@@ -8,7 +8,7 @@ import Xmobar
     Date (..),
     Monitors (..),
     Runnable (Run),
-    StdinReader (..),
+    XMonadLog (XMonadLog),
     XPosition (TopSize),
     defaultConfig,
     xmobar,
@@ -18,12 +18,12 @@ config :: Palette -> Config
 config palette =
   defaultConfig
     { -- Appearance
-      font = "xft:JetBrainsMono NF:weight=bold:pixelsize=40:antialias=true:hinting=true",
+      font = "xft:Cantarell:weight=bold:pixelsize=40:antialias=true:hinting=true",
       additionalFonts =
         [ "xft:Mononoki:pixelsize=40",
           "xft:Font Awesome 6 Free Solid:pixelsize=40",
           "xft:Font Awesome 6 Brands:pixelsize=40",
-          "xft:JetBrainsMono NF:weight=bold:pixelsize=35:antialias=true:hinting=true"
+          "xft:Cantarell:weight=bold:pixelsize=35:antialias=true:hinting=true"
         ],
       bgColor = Palette.backgroundColor palette,
       fgColor = Palette.foregroundColor palette,
@@ -33,16 +33,16 @@ config palette =
       sepChar = "%",
       alignSep = "}{",
       template =
-        "  %UnsafeStdinReader% }{ %default:Master% | %wlp0s20f3wi% | %battery% | %date%  ",
+        "  %XMonadLog% }{ %default:Master% | %wlp0s20f3wi% | %battery% | %date%  ",
       lowerOnStart = True,
       hideOnStart = False,
       allDesktops = True,
       overrideRedirect = True,
       pickBroadest = False,
       persistent = True,
-      -- Command Config
       commands =
-        [ Run $
+        [ Run XMonadLog,
+          Run $
             Battery
               [ "--template",
                 "<acstatus> <left>% (<timeleft>)",
@@ -63,7 +63,6 @@ config palette =
                 "<icon=battery-mid.xpm/>"
               ]
               50,
-          Run UnsafeStdinReader,
           Run $
             Wireless
               "wlp0s20f3"

@@ -47,8 +47,7 @@ numWorkspaces upperBound = pad . show <$> [1 .. upperBound]
 
 main :: IO ()
 main = do
-  handle <- XMobar.spawn
-  xmonad . ewmh . flip additionalKeys mKeys $
+  xmonad . XMobar.render palette . ewmh . flip additionalKeys mKeys $
     docks
       def
         { manageHook = scratchpadHook <+> manageDocks <+> manageHook def,
@@ -60,7 +59,6 @@ main = do
           borderWidth = fromIntegral borderWidthPx,
           focusedBorderColor = yellow,
           normalBorderColor = "#6986A0", -- TODO migrate
-          logHook = XMobar.render palette handle,
           modMask = mod4Mask
         }
   where

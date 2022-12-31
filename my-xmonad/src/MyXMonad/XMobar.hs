@@ -1,35 +1,43 @@
-module MyXMonad.XMobar (
-  render,
-  spawn
-) where
+{-# LANGUAGE FlexibleContexts #-}
 
-import Control.Monad.IO.Class      (MonadIO)
-import System.IO                   (Handle, hPutStrLn)
-import XMonad.Core                 (X)
-import XMonad.Hooks.DynamicLog     (PP (..), dynamicLogWithPP, shorten, wrap,
-                                    xmobarColor, xmobarPP, pad)
-import XMonad.Util.NamedScratchpad (namedScratchpadFilterOutWorkspacePP)
-import XMonad.Util.Run             (spawnPipe)
+module MyXMonad.XMobar (render) where
+
+import Control.Monad.IO.Class (MonadIO)
 import Data.Color.Palette (Palette)
 import qualified Data.Color.Palette as Palette
+import Graphics.X11.Types (Window)
+import XMonad.Core (LayoutClass, X, XConfig)
+import XMonad.Hooks.StatusBar (StatusBarConfig, statusBarProp, withSB)
+import XMonad.Hooks.StatusBar.PP
+  ( PP (..),
+    dynamicLogWithPP,
+    filterOutWsPP,
+    pad,
+    shorten,
+    wrap,
+    xmobarColor,
+    xmobarPP,
+  )
+import XMonad.Util.Run (spawnPipe)
 
-render :: Palette -> Handle -> X ()
-render palette handle =
-    dynamicLogWithPP . namedScratchpadFilterOutWorkspacePP $ xmobarPP
-        { ppOutput          = hPutStrLn handle
-        , ppCurrent         = xmobarColor  yellow "" . wrap "{" "}"
-        , ppVisible         = xmobarColor foregroundColor ""
-        , ppTitle           = xmobarColor foregroundColor "" . shorten 75
-        , ppUrgent          = xmobarColor red "" . wrap "!" ""
-        , ppOrder = \(workspaces : layout : title : _) -> [workspaces, layout, title]
-        , ppWsSep           = ""
-        , ppSep           = pad "|"
-        }
-          where Palette.Palette {
-                    Palette.yellow = yellow,
-                    Palette.foregroundColor = foregroundColor,
-                    Palette.red = red
-                  } = palette
-
-spawn :: (MonadIO m) => m Handle
-spawn = spawnPipe "/home/ffreire/.local/bin/my-xmobar"
+render :: LayoutClass l Window => Palette -> XConfig l -> XConfig l
+render palette =
+  withSB $
+    statusBarProp "$HOME/.local/bin/my-xmobar" $
+      pure $
+        filterOutWsPP ["NSP"] $
+          xmobarPP
+            { ppCurrent = xmobarColor yellow "" . wrap "{" "}",
+              ppVisible = xmobarColor foregroundColor "",
+              ppTitle = xmobarColor foregroundColor "" . shorten 75,
+              ppUrgent = xmobarColor red "" . wrap "!" "",
+              ppOrder = \(workspaces : layout : title : _) -> [workspaces, layout, title],
+              ppWsSep = "",
+              ppSep = pad "|"
+            }
+  where
+    Palette.Palette
+      { Palette.yellow = yellow,
+        Palette.foregroundColor = foregroundColor,
+        Palette.red = red
+      } = palette
