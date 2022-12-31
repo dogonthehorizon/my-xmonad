@@ -18,16 +18,16 @@ config :: Palette -> Config
 config palette =
   defaultConfig
     { -- Appearance
-      font = "xft:Cantarell:weight=bold:pixelsize=40:antialias=true:hinting=true",
+      font = "Cantarell Bold 30",
       additionalFonts =
-        [ "xft:Mononoki:pixelsize=40",
-          "xft:Font Awesome 6 Free Solid:pixelsize=40",
-          "xft:Font Awesome 6 Brands:pixelsize=40",
-          "xft:Cantarell:weight=bold:pixelsize=35:antialias=true:hinting=true"
+        [ "Mononoki 40",
+          "Font Awesome 6 Free Solid 30",
+          "Font Awesome 6 Brands 30",
+          "Cantarell Bold 30"
         ],
       bgColor = Palette.backgroundColor palette,
       fgColor = Palette.foregroundColor palette,
-      position = TopSize C 100 54,
+      position = TopSize C 100 55,
       iconRoot = "/home/ffreire/git/my-xmonad/icons",
       -- Layout
       sepChar = "%",
