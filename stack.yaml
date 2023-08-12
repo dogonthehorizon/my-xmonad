@@ -1,4 +1,5 @@
-resolver: lts-19.33
+resolver:
+  url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/20/17.yaml
 rebuild-ghc-options: true
 packages:
   - my-xmonad
@@ -32,3 +33,4 @@ ghc-options:
 # Solarized dark theme
 stack-colors: error=31:good=32:shell=35:dir=34:recommendation=32:target=95:module=35:package-component=95:secondary=92:highlight=32
 color: always
+system-ghc: true
